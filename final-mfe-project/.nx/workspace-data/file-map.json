@@ -1,0 +1,559 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.8.14",
+  "deps": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^14.2.0",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "nx": "^19.0.0",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.4.0"
+  },
+  "pathMappings": {
+    "@final-mfe/shared-types": [
+      "libs/shared-types/src/index.ts"
+    ],
+    "@final-mfe/shared-ui": [
+      "libs/shared-ui/src/index.ts"
+    ],
+    "@final-mfe/state": [
+      "libs/state/src/index.ts"
+    ],
+    "@final-mfe/events": [
+      "libs/events/src/index.ts"
+    ],
+    "@final-mfe/utilities": [
+      "libs/utilities/src/index.ts"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "nonProjectFiles": [
+      {
+        "file": "docker-compose.yml",
+        "hash": "12764428025067760439"
+      },
+      {
+        "file": "jest.config.js",
+        "hash": "4336896932259285261"
+      },
+      {
+        "file": ".github/workflows/ci.yml",
+        "hash": "13703198501724649255"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "12210989171550764384"
+      },
+      {
+        "file": ".env.example",
+        "hash": "9574987027479377403"
+      },
+      {
+        "file": ".github/workflows/cd.yml",
+        "hash": "17311629179594041504"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "7493582239934489173"
+      },
+      {
+        "file": "package.json",
+        "hash": "10578346340634429685"
+      },
+      {
+        "file": "screenshots/README.md",
+        "hash": "4456035226355714630"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "15802136351086717724"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "16031599662383012581"
+      },
+      {
+        "file": "nx.json",
+        "hash": "6733679118859955148"
+      },
+      {
+        "file": "README.md",
+        "hash": "4170973113027664593"
+      },
+      {
+        "file": "jest.setup.ts",
+        "hash": "15116359693056118187"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "10702533786919249608"
+      }
+    ],
+    "projectFileMap": {
+      "shared-types": [
+        {
+          "file": "libs/shared-types/package.json",
+          "hash": "7765644944975431577"
+        },
+        {
+          "file": "libs/shared-types/project.json",
+          "hash": "17368639902870539612"
+        },
+        {
+          "file": "libs/shared-types/src/index.ts",
+          "hash": "6986967053782109289"
+        },
+        {
+          "file": "libs/shared-types/tsconfig.json",
+          "hash": "17682398979519127569"
+        }
+      ],
+      "mfe-orders": [
+        {
+          "file": "apps/mfe-orders/Dockerfile",
+          "hash": "4348308396829080607"
+        },
+        {
+          "file": "apps/mfe-orders/package.json",
+          "hash": "15538470388430558953",
+          "deps": [
+            "events",
+            "shared-types",
+            "shared-ui",
+            "state",
+            "utilities"
+          ]
+        },
+        {
+          "file": "apps/mfe-orders/postcss.config.js",
+          "hash": "17141708302877750018"
+        },
+        {
+          "file": "apps/mfe-orders/project.json",
+          "hash": "9845261370116363885"
+        },
+        {
+          "file": "apps/mfe-orders/public/index.html",
+          "hash": "1908892859530246885"
+        },
+        {
+          "file": "apps/mfe-orders/src/App.tsx",
+          "hash": "16811536509904227829"
+        },
+        {
+          "file": "apps/mfe-orders/src/OrdersList.test.tsx",
+          "hash": "10071343563741882280"
+        },
+        {
+          "file": "apps/mfe-orders/src/OrdersList.tsx",
+          "hash": "10780798082756728995"
+        },
+        {
+          "file": "apps/mfe-orders/src/api.ts",
+          "hash": "3634600110983719337"
+        },
+        {
+          "file": "apps/mfe-orders/src/bootstrap.tsx",
+          "hash": "8011913989739698739"
+        },
+        {
+          "file": "apps/mfe-orders/src/index.tsx",
+          "hash": "17254717345257659879"
+        },
+        {
+          "file": "apps/mfe-orders/src/styles.css",
+          "hash": "6008823379557687037"
+        },
+        {
+          "file": "apps/mfe-orders/tailwind.config.js",
+          "hash": "9989452908836928123"
+        },
+        {
+          "file": "apps/mfe-orders/tsconfig.json",
+          "hash": "18151208310056668255"
+        },
+        {
+          "file": "apps/mfe-orders/webpack.config.js",
+          "hash": "3687621141640161247"
+        }
+      ],
+      "mfe-cart": [
+        {
+          "file": "apps/mfe-cart/Dockerfile",
+          "hash": "11402593480620761635"
+        },
+        {
+          "file": "apps/mfe-cart/package.json",
+          "hash": "14016469369645671830",
+          "deps": [
+            "events",
+            "shared-types",
+            "shared-ui",
+            "state",
+            "utilities"
+          ]
+        },
+        {
+          "file": "apps/mfe-cart/postcss.config.js",
+          "hash": "8055263870272897227"
+        },
+        {
+          "file": "apps/mfe-cart/project.json",
+          "hash": "2071841764776924883"
+        },
+        {
+          "file": "apps/mfe-cart/public/index.html",
+          "hash": "5401371480968603133"
+        },
+        {
+          "file": "apps/mfe-cart/src/App.tsx",
+          "hash": "8109846427721537284"
+        },
+        {
+          "file": "apps/mfe-cart/src/Cart.test.tsx",
+          "hash": "3300553562575342847"
+        },
+        {
+          "file": "apps/mfe-cart/src/Cart.tsx",
+          "hash": "12138657182043495332"
+        },
+        {
+          "file": "apps/mfe-cart/src/api.ts",
+          "hash": "18107544564679728680"
+        },
+        {
+          "file": "apps/mfe-cart/src/bootstrap.tsx",
+          "hash": "4418433778725864879"
+        },
+        {
+          "file": "apps/mfe-cart/src/index.tsx",
+          "hash": "17254717345257659879"
+        },
+        {
+          "file": "apps/mfe-cart/src/styles.css",
+          "hash": "6008823379557687037"
+        },
+        {
+          "file": "apps/mfe-cart/tailwind.config.js",
+          "hash": "3754281498571310042"
+        },
+        {
+          "file": "apps/mfe-cart/tsconfig.json",
+          "hash": "18151208310056668255"
+        },
+        {
+          "file": "apps/mfe-cart/webpack.config.js",
+          "hash": "13701318997896238565"
+        }
+      ],
+      "state": [
+        {
+          "file": "libs/state/package.json",
+          "hash": "2089033879572259309",
+          "deps": [
+            "events",
+            "shared-types"
+          ]
+        },
+        {
+          "file": "libs/state/project.json",
+          "hash": "10595167004787211501"
+        },
+        {
+          "file": "libs/state/src/index.ts",
+          "hash": "7699040266777822340"
+        },
+        {
+          "file": "libs/state/src/store.ts",
+          "hash": "3729350525805560666"
+        },
+        {
+          "file": "libs/state/tsconfig.json",
+          "hash": "17682398979519127569"
+        }
+      ],
+      "mfe-product": [
+        {
+          "file": "apps/mfe-product/Dockerfile",
+          "hash": "14992775098129320112"
+        },
+        {
+          "file": "apps/mfe-product/package.json",
+          "hash": "18176861548306358046",
+          "deps": [
+            "events",
+            "shared-types",
+            "shared-ui",
+            "state",
+            "utilities"
+          ]
+        },
+        {
+          "file": "apps/mfe-product/postcss.config.js",
+          "hash": "8055263870272897227"
+        },
+        {
+          "file": "apps/mfe-product/project.json",
+          "hash": "2821505542364721095"
+        },
+        {
+          "file": "apps/mfe-product/public/index.html",
+          "hash": "14773765132493635949"
+        },
+        {
+          "file": "apps/mfe-product/src/App.tsx",
+          "hash": "3856298811233763465"
+        },
+        {
+          "file": "apps/mfe-product/src/ProductList.test.tsx",
+          "hash": "6309202782171216664"
+        },
+        {
+          "file": "apps/mfe-product/src/ProductList.tsx",
+          "hash": "16729576647763494994"
+        },
+        {
+          "file": "apps/mfe-product/src/api.ts",
+          "hash": "886412123615174202"
+        },
+        {
+          "file": "apps/mfe-product/src/bootstrap.tsx",
+          "hash": "6438256087447824856"
+        },
+        {
+          "file": "apps/mfe-product/src/index.tsx",
+          "hash": "6560483671891245452"
+        },
+        {
+          "file": "apps/mfe-product/src/styles.css",
+          "hash": "6008823379557687037"
+        },
+        {
+          "file": "apps/mfe-product/tailwind.config.js",
+          "hash": "3754281498571310042"
+        },
+        {
+          "file": "apps/mfe-product/tsconfig.json",
+          "hash": "18151208310056668255"
+        },
+        {
+          "file": "apps/mfe-product/webpack.config.js",
+          "hash": "4585209719510745718"
+        }
+      ],
+      "gateway": [
+        {
+          "file": "apps/gateway/Dockerfile",
+          "hash": "7888860324818657548"
+        },
+        {
+          "file": "apps/gateway/package.json",
+          "hash": "8148614347862635819",
+          "deps": [
+            "events",
+            "shared-types",
+            "shared-ui",
+            "state",
+            "utilities"
+          ]
+        },
+        {
+          "file": "apps/gateway/postcss.config.js",
+          "hash": "8055263870272897227"
+        },
+        {
+          "file": "apps/gateway/project.json",
+          "hash": "9969022147791500608"
+        },
+        {
+          "file": "apps/gateway/public/index.html",
+          "hash": "7927534258428109033"
+        },
+        {
+          "file": "apps/gateway/src/App.test.tsx",
+          "hash": "17162013342398606183"
+        },
+        {
+          "file": "apps/gateway/src/App.tsx",
+          "hash": "16473777241774303440"
+        },
+        {
+          "file": "apps/gateway/src/bootstrap.tsx",
+          "hash": "4250210932811596791"
+        },
+        {
+          "file": "apps/gateway/src/components/ErrorBoundary.tsx",
+          "hash": "5023975619030179868"
+        },
+        {
+          "file": "apps/gateway/src/components/Nav.tsx",
+          "hash": "17967626950413350623"
+        },
+        {
+          "file": "apps/gateway/src/components/RemoteLoader.tsx",
+          "hash": "3653801685270831194"
+        },
+        {
+          "file": "apps/gateway/src/index.tsx",
+          "hash": "17254717345257659879"
+        },
+        {
+          "file": "apps/gateway/src/remotes/loaders.ts",
+          "hash": "11350684063764700142"
+        },
+        {
+          "file": "apps/gateway/src/remotes/remotes.d.ts",
+          "hash": "4262724764224904965"
+        },
+        {
+          "file": "apps/gateway/src/styles.css",
+          "hash": "6008823379557687037"
+        },
+        {
+          "file": "apps/gateway/tailwind.config.js",
+          "hash": "3754281498571310042"
+        },
+        {
+          "file": "apps/gateway/tsconfig.json",
+          "hash": "18151208310056668255"
+        },
+        {
+          "file": "apps/gateway/webpack.config.js",
+          "hash": "7864710047613553478"
+        }
+      ],
+      "utilities": [
+        {
+          "file": "libs/utilities/package.json",
+          "hash": "12597839657279298231"
+        },
+        {
+          "file": "libs/utilities/project.json",
+          "hash": "13657093795407041554"
+        },
+        {
+          "file": "libs/utilities/src/index.ts",
+          "hash": "11780139721577699989"
+        },
+        {
+          "file": "libs/utilities/tsconfig.json",
+          "hash": "17682398979519127569"
+        }
+      ],
+      "shared-ui": [
+        {
+          "file": "libs/shared-ui/package.json",
+          "hash": "14376466331578463942"
+        },
+        {
+          "file": "libs/shared-ui/project.json",
+          "hash": "6994772590047340433"
+        },
+        {
+          "file": "libs/shared-ui/src/Button.tsx",
+          "hash": "5627668689857630750"
+        },
+        {
+          "file": "libs/shared-ui/src/Card.tsx",
+          "hash": "14835185623902122613"
+        },
+        {
+          "file": "libs/shared-ui/src/ErrorMessage.tsx",
+          "hash": "7536566382992759263"
+        },
+        {
+          "file": "libs/shared-ui/src/Loader.tsx",
+          "hash": "14781294066553666754"
+        },
+        {
+          "file": "libs/shared-ui/src/index.ts",
+          "hash": "3067544921950180233"
+        },
+        {
+          "file": "libs/shared-ui/tsconfig.json",
+          "hash": "17682398979519127569"
+        }
+      ],
+      "api": [
+        {
+          "file": "apps/api/.gitignore",
+          "hash": "11199376694696138645"
+        },
+        {
+          "file": "apps/api/Dockerfile",
+          "hash": "6244661528366252333"
+        },
+        {
+          "file": "apps/api/package.json",
+          "hash": "1545484708450653620"
+        },
+        {
+          "file": "apps/api/project.json",
+          "hash": "17405274205055319916"
+        },
+        {
+          "file": "apps/api/src/db/jsonStore.ts",
+          "hash": "3108517694117037190"
+        },
+        {
+          "file": "apps/api/src/routes/cart.ts",
+          "hash": "9782562612034864151"
+        },
+        {
+          "file": "apps/api/src/routes/orders.ts",
+          "hash": "13485644232656473468"
+        },
+        {
+          "file": "apps/api/src/routes/products.ts",
+          "hash": "4354380461767619557"
+        },
+        {
+          "file": "apps/api/src/server.test.ts",
+          "hash": "387897233902700117"
+        },
+        {
+          "file": "apps/api/src/server.ts",
+          "hash": "13544238076613559226"
+        },
+        {
+          "file": "apps/api/tsconfig.json",
+          "hash": "5846594763934910823"
+        }
+      ],
+      "events": [
+        {
+          "file": "libs/events/package.json",
+          "hash": "13382995681501988862"
+        },
+        {
+          "file": "libs/events/project.json",
+          "hash": "7715385625179826897"
+        },
+        {
+          "file": "libs/events/src/NisumEvents.test.ts",
+          "hash": "8622396626518008778"
+        },
+        {
+          "file": "libs/events/src/NisumEvents.ts",
+          "hash": "2698836052840280856"
+        },
+        {
+          "file": "libs/events/src/index.ts",
+          "hash": "3516464465433430466"
+        },
+        {
+          "file": "libs/events/tsconfig.json",
+          "hash": "17682398979519127569"
+        }
+      ]
+    }
+  }
+}

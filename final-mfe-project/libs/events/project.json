@@ -1,0 +1,22 @@
+{
+  "name": "events",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/events/src",
+  "tags": ["type:lib", "scope:events"],
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": { "command": "tsc -p tsconfig.json", "cwd": "libs/events" },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npx jest --selectProjects libs-and-apps --testPathPattern=libs/events", "cwd": "." }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": { "command": "eslint 'libs/events/src/**/*.{ts,tsx}'", "cwd": "." }
+    }
+  }
+}

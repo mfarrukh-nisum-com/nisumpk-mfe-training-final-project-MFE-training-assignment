@@ -1,0 +1,27 @@
+{
+  "name": "mfe-cart",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/mfe-cart/src",
+  "tags": ["type:app", "scope:mfe-cart", "remote"],
+  "implicitDependencies": ["shared-types", "shared-ui", "state", "events", "utilities"],
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npm run start", "cwd": "apps/mfe-cart" }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npm run build", "cwd": "apps/mfe-cart" },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npx jest --selectProjects libs-and-apps --testPathPattern=apps/mfe-cart", "cwd": "." }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": { "command": "eslint 'apps/mfe-cart/src/**/*.{ts,tsx}'", "cwd": "." }
+    }
+  }
+}

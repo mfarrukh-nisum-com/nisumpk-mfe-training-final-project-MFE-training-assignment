@@ -1,0 +1,33 @@
+{
+  "name": "mfe-product",
+  "version": "1.4.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack serve --config webpack.config.js --port 4201",
+    "build": "webpack --config webpack.config.js --mode production",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@final-mfe/events": "1.0.0",
+    "@final-mfe/shared-types": "1.0.0",
+    "@final-mfe/shared-ui": "1.0.0",
+    "@final-mfe/state": "1.0.0",
+    "@final-mfe/utilities": "1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.6.0",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.90.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.0",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.35",
+    "autoprefixer": "^10.4.17",
+    "postcss-loader": "^8.1.0",
+    "css-loader": "^6.10.0",
+    "style-loader": "^3.3.4"
+  }
+}

@@ -1,0 +1,86 @@
+name: CD
+
+# Runs only after CI succeeds on main. Uses `nx affected` to find which
+# deployable apps actually changed, then builds + pushes ONLY those as
+# Docker images to GitHub Container Registry (ghcr.io) — no external
+# secrets required, GITHUB_TOKEN is enough. This is what makes "Gateway
+# v1.0 / Product v1.4 / Cart v2.1 / Orders v1.0 deployed independently"
+# real: shipping one app never rebuilds or republishes the others.
+#
+# Pushing to a container registry is as far as CD can go without a real
+# hosting target connected to this repo. The last mile — pulling these
+# images onto an actual server/host (ECS, Cloud Run, a VM, etc.) — is
+# documented in the README's Deployment section rather than faked here.
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  detect-affected:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.affected.outputs.apps }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "npm"
+      - run: npm ci
+      - uses: nrwl/nx-set-shas@v4
+      - name: List affected deployable apps
+        id: affected
+        run: echo "apps=$(npx nx show projects --affected --type=app --json)" >> "$GITHUB_OUTPUT"
+
+  build-and-push:
+    needs: detect-affected
+    if: ${{ needs.detect-affected.outputs.apps != '[]' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        app: [gateway, mfe-product, mfe-cart, mfe-orders, api]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skip if this app wasn't affected
+        id: check
+        run: |
+          if echo '${{ needs.detect-affected.outputs.apps }}' | grep -q '"${{ matrix.app }}"'; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Log in to GitHub Container Registry
+        if: steps.check.outputs.run == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push ${{ matrix.app }} image
+        if: steps.check.outputs.run == 'true'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./apps/${{ matrix.app }}/Dockerfile
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.app }}:latest
+            ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.app }}:${{ github.sha }}
+
+      - name: Image published
+        if: steps.check.outputs.run == 'true'
+        run: echo "Published ${{ env.REGISTRY }}/${{ github.repository }}/${{ matrix.app }}:${{ github.sha }} — pull this onto your host to deploy it."

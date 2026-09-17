@@ -1,0 +1,27 @@
+{
+  "name": "gateway",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/gateway/src",
+  "tags": ["type:app", "scope:gateway"],
+  "implicitDependencies": ["shared-types", "shared-ui", "state", "events", "utilities"],
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npm run start", "cwd": "apps/gateway" }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npm run build", "cwd": "apps/gateway" },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npx jest --selectProjects libs-and-apps --testPathPattern=apps/gateway", "cwd": "." }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": { "command": "eslint 'apps/gateway/src/**/*.{ts,tsx}'", "cwd": "." }
+    }
+  }
+}

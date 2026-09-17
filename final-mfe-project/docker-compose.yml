@@ -1,0 +1,66 @@
+version: "3.9"
+
+# Brings up the complete system: backend, gateway, and all three remote
+# MFEs. Each service is independently buildable/deployable in its own
+# right — this file just wires them together for local/demo purposes.
+#
+# `context: .` on every service is required, not cosmetic: these are npm
+# workspace packages that depend on ../../libs and the root
+# nx.json/tsconfig.base.json — building from an individual app folder
+# alone can't resolve any of that. See each Dockerfile's top comment.
+#
+# The API container's data/ folder is a named volume, so the JSON-file
+# "database" (products.json, cart.json, orders.json) survives container
+# restarts instead of reseeding every time.
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports: ["3000:3000"]
+    environment:
+      - API_PORT=3000
+      - CORS_ORIGIN=http://localhost:4200
+    volumes:
+      - api-data:/app/data
+
+  mfe-product:
+    build:
+      context: .
+      dockerfile: apps/mfe-product/Dockerfile
+    ports: ["4201:4201"]
+    environment:
+      - API_URL=http://api:3000/api
+    depends_on: [api]
+
+  mfe-cart:
+    build:
+      context: .
+      dockerfile: apps/mfe-cart/Dockerfile
+    ports: ["4202:4202"]
+    environment:
+      - API_URL=http://api:3000/api
+    depends_on: [api]
+
+  mfe-orders:
+    build:
+      context: .
+      dockerfile: apps/mfe-orders/Dockerfile
+    ports: ["4203:4203"]
+    environment:
+      - API_URL=http://api:3000/api
+    depends_on: [api]
+
+  gateway:
+    build:
+      context: .
+      dockerfile: apps/gateway/Dockerfile
+    ports: ["4200:4200"]
+    environment:
+      - REMOTE_PRODUCT_URL=http://localhost:4201/remoteEntry.js
+      - REMOTE_CART_URL=http://localhost:4202/remoteEntry.js
+      - REMOTE_ORDERS_URL=http://localhost:4203/remoteEntry.js
+    depends_on: [mfe-product, mfe-cart, mfe-orders, api]
+
+volumes:
+  api-data:

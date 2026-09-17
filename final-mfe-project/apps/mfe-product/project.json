@@ -1,0 +1,27 @@
+{
+  "name": "mfe-product",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/mfe-product/src",
+  "tags": ["type:app", "scope:mfe-product", "remote"],
+  "implicitDependencies": ["shared-types", "shared-ui", "state", "events", "utilities"],
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npm run start", "cwd": "apps/mfe-product" }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npm run build", "cwd": "apps/mfe-product" },
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": { "command": "npx jest --selectProjects libs-and-apps --testPathPattern=apps/mfe-product", "cwd": "." }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": { "command": "eslint 'apps/mfe-product/src/**/*.{ts,tsx}'", "cwd": "." }
+    }
+  }
+}

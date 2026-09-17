@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@final-mfe/shared-types": ["libs/shared-types/src/index.ts"],
+      "@final-mfe/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@final-mfe/state": ["libs/state/src/index.ts"],
+      "@final-mfe/events": ["libs/events/src/index.ts"],
+      "@final-mfe/utilities": ["libs/utilities/src/index.ts"]
+    }
+  }
+}
